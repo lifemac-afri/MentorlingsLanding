@@ -1,5 +1,9 @@
 import { motion } from 'motion/react';
 import { Sparkles, Github, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 const footerLinks = {
   Product: ['Features', 'Pricing', 'Demo', 'Roadmap'],
@@ -16,6 +20,60 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captcha, setCaptcha] = useState(() => {
+    const a = Math.floor(Math.random() * 10) + 1;
+    const b = Math.floor(Math.random() * 10) + 1;
+    return { q: `${a} + ${b}`, a: a + b };
+  });
+  const [userAnswer, setUserAnswer] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (parseInt(userAnswer) !== captcha.a) {
+      toast.error("Incorrect CAPTCHA answer. Please try again.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("507e506a-c540-4246-bc47-894417a34e45");
+
+    const payload = {
+      sessionUuid: crypto.randomUUID(),
+      respondentUuid: crypto.randomUUID(),
+      responses: {
+        "507e506a-c540-4246-bc47-894417a34e45": email,
+      },
+      captchas: {},
+      isCompleted: true,
+      password: "",
+    };
+
+    try {
+      const response = await fetch("https://api.tally.so/forms/MeRBKM/respond", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      setIsSubmitted(true);
+      toast.success("Thanks for subscribing!");
+    } catch (error) {
+      toast.error("Failed to submit form. Please try again.");
+      console.error("Submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="py-20 px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -23,12 +81,12 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="flex items-center gap-2">
-              <img src="/ml_blue.png" alt="Mentorlings" className="w-8 h-8 object-contain" />
-              <span className="text-xl font-semibold bg-gradient-to-r from-blue-700 to-teal-600 bg-clip-text text-transparent">
+            <Link to="/" className="flex items-center gap-2">
+              <img src="/ios-light.png" alt="Mentorlings" className="w-8 h-8 object-contain" />
+              <span className="text-xl font-semibold text-[#050083]">
                 Mentorlings
               </span>
-            </div>
+            </Link>
 
             <p className="text-gray-600 leading-relaxed">
               Empowering Ghana's youth with AI-powered mentorship. The digital evolution of the Paradigm Shift Project—transforming lives, one match at a time.
@@ -78,19 +136,60 @@ export function Footer() {
               <h3 className="text-2xl font-bold text-gray-900">Stay Updated</h3>
               <p className="text-gray-600">Get the latest news and updates delivered to your inbox.</p>
             </div>
-            <div className="flex gap-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-teal-500 text-white font-medium whitespace-nowrap"
-              >
-                Subscribe
-              </motion.button>
+            <div className="space-y-4">
+              {isSubmitted ? (
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="bg-green-50 border border-green-100 p-6 rounded-xl"
+                >
+                  <p className="text-[#050083] font-bold text-xl mb-1 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-yellow-500" />
+                    You're on the list!
+                  </p>
+                  <p className="text-gray-600 text-sm">
+                    Thank you for joining Mentorlings. We'll keep you updated on our progress toward 2026.
+                  </p>
+                </motion.div>
+              ) : (
+                <form 
+                  onSubmit={handleSubmit}
+                  className="space-y-3"
+                >
+                  <div className="flex gap-3">
+                    <input
+                      type="email"
+                      name="507e506a-c540-4246-bc47-894417a34e45"
+                      placeholder="Enter your email"
+                      required
+                      className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#050083] focus:border-transparent"
+                    />
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="px-6 py-3 rounded-xl bg-[#050083] text-white font-medium whitespace-nowrap hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                    </motion.button>
+                  </div>
+                  
+                  {/* Simple Captcha */}
+                  <div className="flex items-center gap-3 bg-gray-50 p-2 px-3 rounded-lg border border-gray-100">
+                    <span className="text-xs font-medium text-gray-500">Solve to verify:</span>
+                    <span className="text-sm font-bold text-gray-900 bg-white px-2 py-0.5 rounded border border-gray-200">{captcha.q} =</span>
+                    <input
+                      type="number"
+                      value={userAnswer}
+                      onChange={(e) => setUserAnswer(e.target.value)}
+                      placeholder="?"
+                      required
+                      className="w-16 px-2 py-1 rounded border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#050083] text-sm text-center"
+                    />
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>
@@ -100,9 +199,9 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
             <p>© 2026 Mentorlings. Originally founded as PSP. All rights reserved.</p>
             <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-blue-600 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Cookie Policy</a>
+              <Link to="/privacy" className="hover:text-[#050083] transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-[#050083] transition-colors">Terms of Service</Link>
+              <Link to="/cookies" className="hover:text-[#050083] transition-colors">Cookie Policy</Link>
             </div>
           </div>
         </div>

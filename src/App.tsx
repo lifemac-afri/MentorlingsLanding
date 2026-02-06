@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { BentoGrid } from './components/BentoGrid';
@@ -7,6 +8,30 @@ import { FloatingElements } from './components/FloatingElements';
 import { Timeline } from './components/Timeline';
 import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+function LandingPage() {
+  return (
+    <div className="relative z-10">
+      <Navigation />
+      <HeroSection />
+      <BentoGrid />
+      <Timeline />
+      <CTASection />
+      <Footer />
+    </div>
+  );
+}
 
 export default function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -43,16 +68,13 @@ export default function App() {
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-blue-300/10 to-teal-300/10 rounded-full blur-2xl" />
       </motion.div>
 
-  
-      {/* Main content */}
-      <div className="relative z-10">
-        <Navigation />
-        <HeroSection />
-        <BentoGrid />
-        <Timeline />
-        <CTASection />
-        <Footer />
-      </div>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/cookies" element={<CookiePolicy />} />
+      </Routes>
     </div>
   );
 }

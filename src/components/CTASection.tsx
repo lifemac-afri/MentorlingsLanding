@@ -34,7 +34,7 @@ export function CTASection() {
                 </div>
 
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-teal-900 bg-clip-text text-transparent">
+                  <span className="text-[#050083]">
                     Ready to be part of the Paradigm Shift?
                   </span>
                 </h2>

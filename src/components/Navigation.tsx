@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Menu, X, Sparkles } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { WhatsAppModal } from './WhatsAppModal';
 
 export function Navigation() {
@@ -21,17 +22,20 @@ export function Navigation() {
           
           <div className="relative px-6 py-4 flex items-center justify-between">
             {/* Logo */}
-            <motion.a 
-              href="#"
-              className="flex items-center justify-center gap-2"
+            <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <img src="/ios-light.png" alt="Mentorlings" className="w-8 h-8 object-contain" />
-              <span className="text-2xl font-bold text-[#050083] pt-2">
-                Mentorlings
-              </span>
-            </motion.a>
+              <Link 
+                to="/"
+                className="flex items-center justify-center gap-2"
+              >
+                <img src="/ios-light.png" alt="Mentorlings" className="w-8 h-8 object-contain" />
+                <span className="text-2xl font-bold text-[#050083] pt-2">
+                  Mentorlings
+                </span>
+              </Link>
+            </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">

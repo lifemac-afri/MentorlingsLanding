@@ -27,7 +27,7 @@ export function HeroSection() {
             {/* Heading */}
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent">
+                <span className="text-[#050083]">
                   The Future of Guidance for Ghana's Next Generation
                 </span>
               </h1>

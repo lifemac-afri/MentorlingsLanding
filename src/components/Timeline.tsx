@@ -76,8 +76,8 @@ export function Timeline() {
           className="text-center mb-12 space-y-6"
         >
           <h2 className="text-4xl md:text-5xl font-bold">
-            <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent">
-              How It Works
+            <span className="text-[#050083]">
+              The Journey to Success
             </span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
