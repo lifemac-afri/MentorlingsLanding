@@ -8,7 +8,7 @@ interface WhatsAppModalProps {
 }
 
 export function WhatsAppModal({ isOpen, onClose }: WhatsAppModalProps) {
-  const whatsappGroupLink = "https://chat.whatsapp.com/YOUR_GROUP_LINK"; // Replace with actual link
+  const whatsappGroupLink = "https://wa.me/1234567890";
 
   const handleJoinWhatsApp = () => {
     window.open(whatsappGroupLink, '_blank');
