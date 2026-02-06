@@ -40,21 +40,22 @@ export function Navigation() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {['Features', 'How it Works', 'About'].map((item, index) => (
-                <motion.a
+                <motion.div
                   key={item}
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
-                  className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors relative group"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.3 }}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
                 >
-                  {item}
-                  <motion.span 
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-teal-500 group-hover:w-full transition-all duration-300"
-                  />
-                </motion.a>
+                  <Link
+                    to={`/#${item.toLowerCase().replace(' ', '-')}`}
+                    className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors relative group"
+                  >
+                    {item}
+                    <motion.span 
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-teal-500 group-hover:w-full transition-all duration-300"
+                    />
+                  </Link>
+                </motion.div>
               ))}
             </div>
 
@@ -93,13 +94,14 @@ export function Navigation() {
               <div className="absolute inset-0 bg-white/70 backdrop-blur-xl rounded-2xl border border-white/20 shadow-lg" />
               <div className="relative p-6 space-y-4">
                 {['Features', 'How it Works', 'About'].map((item) => (
-                  <a
+                  <Link
                     key={item}
-                    href={`#${item.toLowerCase().replace(' ', '-')}`}
+                    to={`/#${item.toLowerCase().replace(' ', '-')}`}
+                    onClick={() => setIsOpen(false)}
                     className="block text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
                   >
                     {item}
-                  </a>
+                  </Link>
                 ))}
                 <div className="pt-4 border-t border-gray-200">
                   <button 

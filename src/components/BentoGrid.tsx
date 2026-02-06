@@ -6,7 +6,7 @@ const bentoItems = [
   {
     id: 1,
     type: 'logo',
-    span: 'col-span-1 row-span-1',
+    span: 'lg:col-span-1 lg:row-span-1 sm:col-span-1',
     bg: 'bg-[#050083]',
     content: <img src="/adaptive-icon-black.png" alt="Logo" className="w-64 h-64 object-contain filter brightness-0 invert" />
   },
@@ -15,7 +15,7 @@ const bentoItems = [
     type: 'app',
     title: 'The App',
     subtitle: 'Available on iOS & Android',
-    span: 'col-span-2 row-span-1',
+    span: 'lg:col-span-2 lg:row-span-1 sm:col-span-2',
     bg: 'bg-white',
     image: '/focus3d.png'
   },
@@ -23,7 +23,7 @@ const bentoItems = [
     id: 3,
     type: 'person',
     title: 'AI Matches',
-    span: 'col-span-1 row-span-2',
+    span: 'lg:col-span-1 lg:row-span-2 sm:col-span-1 sm:row-span-2',
     bg: 'bg-[#E0DAFF]',
     image: '/mentor.jpg',
     floatingLabel: 'Verified'
@@ -34,7 +34,7 @@ const bentoItems = [
     value: '3,000+',
     subtitle: 'Students Impacted',
     trend: '+12%',
-    span: 'col-span-1 row-span-1',
+    span: 'lg:col-span-1 lg:row-span-1 sm:col-span-1',
     bg: 'bg-white'
   },
   {
@@ -42,7 +42,7 @@ const bentoItems = [
     type: 'network',
     title: 'Our Mentors',
     value: '150+',
-    span: 'col-span-1 row-span-1',
+    span: 'lg:col-span-1 lg:row-span-1 sm:col-span-1',
     bg: 'bg-white',
     avatars: true
   },
@@ -51,7 +51,7 @@ const bentoItems = [
     type: 'feature-tall',
     title: 'From PSP to Platform',
     subtitle: 'Scaling impact through intelligent automation',
-    span: 'col-span-1 row-span-2',
+    span: 'lg:col-span-1 lg:row-span-2 sm:col-span-1 sm:row-span-2',
     bg: 'bg-[#F0F2F5]',
     image: '/side3d.png'
   },
@@ -60,7 +60,7 @@ const bentoItems = [
     type: 'roadmap',
     title: 'Visual Roadmaps',
     subtitle: 'Plan your path to SHS and beyond',
-    span: 'col-span-2 row-span-1',
+    span: 'lg:col-span-2 lg:row-span-1 sm:col-span-2',
     bg: 'bg-[#050083]',
     dark: true,
     milestones: [
@@ -76,14 +76,14 @@ const bentoItems = [
     title: 'Vetted & Verified',
     value: '100%',
     subtitle: 'Secure Environment',
-    span: 'col-span-1 row-span-1',
+    span: 'lg:col-span-1 lg:row-span-1 sm:col-span-1',
     bg: 'bg-white'
   }
 ];
 
 export function BentoGrid() {
   return (
-    <section className="py-16 px-6 bg-[#F8F9FB]">
+    <section id="features" className="py-16 px-6 bg-[#F8F9FB]">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -103,7 +103,7 @@ export function BentoGrid() {
         </motion.div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto auto-rows-[180px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto auto-rows-[180px]">
           {bentoItems.map((item, index) => (
             <motion.div
               key={item.id}
@@ -113,7 +113,7 @@ export function BentoGrid() {
               transition={{ delay: index * 0.05, duration: 0.5 }}
               className={`group ${item.span}`}
             >
-              <div className={`relative h-full ${item.bg} rounded-[32px] overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 p-8 flex flex-col justify-between`}>
+              <div className={`relative h-full ${item.bg} rounded-[32px] overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 p-6 sm:p-8 flex flex-col justify-between`}>
                 
                 {item.type === 'logo' && (
                   <div className="flex items-center justify-center h-full">
@@ -144,7 +144,7 @@ export function BentoGrid() {
                       <img 
                         src={item.image} 
                         alt={item.title} 
-                        className="absolute top-1/2 -translate-y-1/2 -right-4 w-[90%] max-w-none object-contain drop-shadow-2xl translate-x-2 group-hover:translate-x-0 transition-transform duration-700" 
+                        className="absolute top-1/2 -translate-y-1/2 -right-4 w-[85%] sm:w-[90%] max-w-none object-contain drop-shadow-2xl translate-x-2 group-hover:translate-x-0 transition-transform duration-700" 
                       />
                     </div>
                   </div>
@@ -168,8 +168,8 @@ export function BentoGrid() {
                 {item.type === 'stat' && (
                   <>
                     <div>
-                      <div className="text-gray-500 text-sm font-medium mb-1 uppercase tracking-tight">New Impact</div>
-                      <div className="text-5xl font-bold text-gray-900 mb-2">{item.value}</div>
+                      <div className="text-gray-500 text-xs sm:text-sm font-medium mb-1 uppercase tracking-tight">New Impact</div>
+                      <div className="text-4xl sm:text-5xl font-bold text-gray-900 mb-2">{item.value}</div>
                       <div className="text-green-500 text-sm font-bold">{item.trend}</div>
                     </div>
                     <div className="text-gray-400 text-sm">{item.subtitle}</div>
@@ -213,7 +213,7 @@ export function BentoGrid() {
                       <img 
                         src={item.image} 
                         alt={item.title} 
-                        className="absolute -bottom-2 -left-36 w-[150%] max-w-none h-auto max-h-[300px] object-contain drop-shadow-2xl translate-y-8 translate-x-8 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-700 ease-out" 
+                        className="absolute -bottom-2 -left-20 sm:-left-36 w-[130%] sm:w-[150%] max-w-none h-auto max-h-[250px] sm:max-h-[300px] object-contain drop-shadow-2xl translate-y-8 translate-x-8 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-700 ease-out" 
                       />
                     </div>
                   </div>

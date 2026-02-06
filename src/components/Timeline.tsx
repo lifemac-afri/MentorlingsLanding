@@ -65,7 +65,7 @@ export function Timeline() {
   const steps = activeTab === 'mentor' ? mentorSteps : menteeSteps;
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section id="how-it-works" className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div

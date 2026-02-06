@@ -6,10 +6,21 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 const footerLinks = {
-  Product: ['Features', 'Pricing', 'Demo', 'Roadmap'],
-  Company: ['About', 'Blog', 'Careers', 'Press'],
-  Resources: ['Documentation', 'Help Center', 'Community', 'API'],
-  Legal: ['Privacy', 'Terms', 'Security', 'Cookies']
+  Product: [
+    { name: 'Features', href: '/#features' },
+    { name: 'How it Works', href: '/#how-it-works' },
+    { name: 'Roadmap', href: '/#features' }
+  ],
+  Company: [
+    { name: 'About Us', href: '/#about' },
+    { name: 'Careers', href: '#' },
+    { name: 'Contact', href: 'mailto:hello@mentorlings.com' }
+  ],
+  Legal: [
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Terms of Service', href: '/terms' },
+    { name: 'Cookie Policy', href: '/cookies' }
+  ]
 };
 
 const socialLinks = [
@@ -115,13 +126,13 @@ export function Footer() {
               <h3 className="font-semibold text-gray-900">{category}</h3>
               <ul className="space-y-3">
                 {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
+                  <li key={link.name}>
+                    <Link
+                      to={link.href}
                       className="text-gray-600 hover:text-blue-600 transition-colors"
                     >
-                      {link}
-                    </a>
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
