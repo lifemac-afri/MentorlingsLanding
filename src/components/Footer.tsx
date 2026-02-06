@@ -167,20 +167,20 @@ export function Footer() {
                   onSubmit={handleSubmit}
                   className="space-y-3"
                 >
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <input
                       type="email"
                       name="507e506a-c540-4246-bc47-894417a34e45"
                       placeholder="Enter your email"
                       required
-                      className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#050083] focus:border-transparent"
+                      className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#050083] focus:border-transparent min-w-0"
                     />
                     <motion.button
                       type="submit"
                       disabled={isSubmitting}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-6 py-3 rounded-xl bg-[#050083] text-white font-medium whitespace-nowrap hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#050083] text-white font-medium whitespace-nowrap hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                     </motion.button>

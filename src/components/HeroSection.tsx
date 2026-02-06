@@ -98,7 +98,7 @@ export function HeroSection() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 }}
-              className="absolute -right-4 bottom-1/4 w-64 bg-white rounded-2xl border border-gray-200 shadow-lg p-4"
+              className="absolute right-4 sm:-right-4 bottom-1/4 w-auto max-w-[200px] sm:w-64 bg-white rounded-2xl border border-gray-200 shadow-lg p-3 sm:p-4"
             >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center">

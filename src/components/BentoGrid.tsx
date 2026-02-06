@@ -144,7 +144,7 @@ export function BentoGrid() {
                       <img 
                         src={item.image} 
                         alt={item.title} 
-                        className="absolute top-1/2 -translate-y-1/2 -right-4 w-[85%] sm:w-[90%] max-w-none object-contain drop-shadow-2xl translate-x-2 group-hover:translate-x-0 transition-transform duration-700" 
+                        className="absolute top-1/2 -translate-y-1/2 -right-2 sm:-right-4 w-[75%] sm:w-[90%] max-w-none object-contain drop-shadow-2xl translate-x-2 group-hover:translate-x-0 transition-transform duration-700" 
                       />
                     </div>
                   </div>
@@ -213,7 +213,7 @@ export function BentoGrid() {
                       <img 
                         src={item.image} 
                         alt={item.title} 
-                        className="absolute -bottom-2 -left-20 sm:-left-36 w-[130%] sm:w-[150%] max-w-none h-auto max-h-[250px] sm:max-h-[300px] object-contain drop-shadow-2xl translate-y-8 translate-x-8 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-700 ease-out" 
+                        className="absolute -bottom-2 -left-16 sm:-left-36 w-[120%] sm:w-[150%] max-w-none h-auto max-h-[220px] sm:max-h-[300px] object-contain drop-shadow-2xl translate-y-8 translate-x-8 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-700 ease-out" 
                       />
                     </div>
                   </div>
